@@ -9,8 +9,7 @@ on:
         default: true
   push:
     branches:
-      - nx2
-      - nx2-experimental
+      - master
 
 permissions:
   contents: read
@@ -25,12 +24,10 @@ jobs:
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - platform: linux-x86_64
-            runner: ubuntu-24.04
-          - platform: windows-x86_64
-            runner: windows-2022
+    matrix:
+      include:
+        - platform: windows-x86_64
+          runner: windows-2022
 
     steps:
       - name: Check out source
@@ -226,7 +223,6 @@ jobs:
           mkdir dist
           (cd "artifacts/eglantine-windows-x86_64-${GITHUB_SHA}" &&
             zip -qr "${GITHUB_WORKSPACE}/dist/eglantine-${GITHUB_SHA}-windows-x86_64.zip" .)
-          cp "artifacts/eglantine-linux-x86_64-${GITHUB_SHA}/eglantine-${GITHUB_SHA}-linux-x86_64.AppImage" dist/
 
       - name: Create release
         shell: bash
