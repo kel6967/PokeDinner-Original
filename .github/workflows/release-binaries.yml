@@ -24,10 +24,10 @@ jobs:
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
-    matrix:
-      include:
-        - platform: windows-x86_64
-          runner: windows-2022
+      matrix:
+        include:
+          - platform: windows-x86_64
+            runner: windows-2022
 
     steps:
       - name: Check out source
